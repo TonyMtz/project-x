@@ -1,4 +1,4 @@
-# project-x
+# ProjectX
 
 Trello Board:
 https://trello.com/b/IHmhQEse/project-x
