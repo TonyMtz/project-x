@@ -1,4 +1,4 @@
-# project-x
+# ProjectX
 
 Trello Board:
 https://trello.com/b/IHmhQEse/project-x
@@ -10,12 +10,13 @@ Using Unity *5.3.3*
 
 I suggest to use this structure, so we can work better without mixing different assets:
 
+- Animations
 - Prefabs
+- Scenes
 - Scripts
 - Sprites
-- Animations
-- Scenes
+
 
 ## Best Practices
 
-- Since scenes are saved thru binaries, I think we can work better having all entities in prefabs and updating them instead of making modifications to the entities directly in the scene. In this fashion we can work at the same time in different scenes to avoid conflicts and reusing the same prefabs.
+- Since scenes are saved as binaries, I think we can work better having all entities in prefabs and updating them instead of making modifications to the entities directly in the scene. In this fashion we can work at the same time in different scenes to avoid conflicts and reusing the same prefabs.
