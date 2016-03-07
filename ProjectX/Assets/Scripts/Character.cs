@@ -17,11 +17,21 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected float groundRadius;
 
+    [SerializeField]
+    protected float healthPoints;
+
     protected bool isFacingLeft = false;
+
+    protected Animator animator;
 
     protected bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+    }
+
+    virtual public void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
     virtual public void Move()

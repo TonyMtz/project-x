@@ -2,12 +2,13 @@
 
 public class Player : Character
 {
-    private Animator animator;
+    [SerializeField]
+    private int jumpForce;
 
     // Use this for initialization
-    void Start()
+    override public void Start()
     {
-        animator = GetComponent<Animator>();
+        base.Start();
     }
 
     // Update is called once per frame
@@ -67,7 +68,7 @@ public class Player : Character
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 300));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
     }
 }

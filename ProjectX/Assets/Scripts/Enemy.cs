@@ -12,8 +12,10 @@ public class Enemy : Character
     private LayerMask whatIsWall;
 
     // Use this for initialization
-    void Start()
+    override public void Start()
     {
+        base.Start();
+        isFacingLeft = true;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Enemy : Character
         if (IsWalled())
         {
             isFacingLeft = !isFacingLeft;
+            Flip();
         }
 
         Move();
