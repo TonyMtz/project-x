@@ -48,11 +48,11 @@ public abstract class Character : MonoBehaviour
 
     virtual public void Move()
     {
-        if (isFacingLeft && isMoving)
+        if (isFacingLeft)
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime);
         }
-		else if(isMoving)
+		else 
         {
             transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime);
         }

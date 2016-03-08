@@ -9,8 +9,8 @@ public class Player : Character
     // Use this for initialization
     override public void Start()
     {
-        //base.Start();
-		animator = GetComponent<Animator>();
+        base.Start();
+
     }
 
     // Update is called once per frame
@@ -30,11 +30,11 @@ public class Player : Character
         // Player Movements
         if (gameController.HasGameStarted)
         {
-            base.Move();
+            //base.Move();
 
             animator.SetInteger("Speed", isFacingLeft ? -1 : 1);
             animator.SetBool("Jumping", !IsGrounded());
-			animator.SetBool("isMoving", base.IsMoving());
+
         }
     }
 
@@ -51,7 +51,7 @@ public class Player : Character
 		{
 			transform.Translate (Vector2.right * 4f * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 180);
-			base.setIsMoving (true);
+
 		}
 
         // Go Right
@@ -59,7 +59,7 @@ public class Player : Character
 		{
 			transform.Translate (Vector2.right * 4f * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
-			base.setIsMoving (true);
+
 
 		}
 
@@ -72,7 +72,7 @@ public class Player : Character
 		//Stop walk animation
 		if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.RightArrow)) 
 		{
-			base.setIsMoving (false);
+			
 
 		}
 
