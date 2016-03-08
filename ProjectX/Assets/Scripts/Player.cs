@@ -32,7 +32,7 @@ public class Player : Character
         {
             //base.Move();
 
-            animator.SetInteger("Speed", isFacingLeft ? -1 : 1);
+            
             animator.SetBool("Jumping", !IsGrounded());
 
         }
@@ -52,6 +52,9 @@ public class Player : Character
 			transform.Translate (Vector2.right * 4f * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 180);
 
+			animator.SetInteger("Speed", -1);
+
+
 		}
 
         // Go Right
@@ -60,6 +63,7 @@ public class Player : Character
 			transform.Translate (Vector2.right * 4f * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
 
+			animator.SetInteger("Speed", 1);
 
 		}
 
@@ -72,7 +76,9 @@ public class Player : Character
 		//Stop walk animation
 		if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.RightArrow)) 
 		{
-			
+			animator.Play ("PlayerIdle");
+			animator.SetInteger("Speed", 0);
+
 
 		}
 
