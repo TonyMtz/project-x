@@ -5,10 +5,12 @@ public class Player : Character
     [SerializeField]
     private int jumpForce;
 
+
     // Use this for initialization
     override public void Start()
     {
-        base.Start();
+        //base.Start();
+		animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class Player : Character
 
             animator.SetInteger("Speed", isFacingLeft ? -1 : 1);
             animator.SetBool("Jumping", !IsGrounded());
+			animator.SetBool("isMoving", base.IsMoving());
         }
     }
 
@@ -44,31 +47,34 @@ public class Player : Character
         }
 
         // Go Left
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (isFacingLeft)
-            {
-                return;
-            }
-            isFacingLeft = true;
-            Flip();
-        }
+		if(Input.GetKey(KeyCode.LeftArrow))
+		{
+			transform.Translate (Vector2.right * 4f * Time.deltaTime);
+			transform.eulerAngles = new Vector2 (0, 180);
+			base.setIsMoving (true);
+		}
 
         // Go Right
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (!isFacingLeft)
-            {
-                return;
-            }
-            isFacingLeft = false;
-            Flip();
-        }
+		if(Input.GetKey(KeyCode.RightArrow))
+		{
+			transform.Translate (Vector2.right * 4f * Time.deltaTime);
+			transform.eulerAngles = new Vector2 (0, 0);
+			base.setIsMoving (true);
+
+		}
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
+
+		//Stop walk animation
+		if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.RightArrow)) 
+		{
+			base.setIsMoving (false);
+
+		}
+
     }
 }

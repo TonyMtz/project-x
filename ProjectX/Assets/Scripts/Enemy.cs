@@ -16,6 +16,7 @@ public class Enemy : Character
     {
         base.Start();
         isFacingLeft = true;
+		isMoving = true;
     }
 
     // Update is called once per frame

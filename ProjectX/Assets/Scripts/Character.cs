@@ -22,12 +22,24 @@ public abstract class Character : MonoBehaviour
 
     protected bool isFacingLeft = false;
 
+	protected bool isMoving =false;
+
     protected Animator animator;
 
     protected bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
+
+	public bool IsMoving()
+	{
+		return isMoving;
+	}
+
+	public void setIsMoving(bool mov)
+	{
+		isMoving = mov;
+	}
 
     virtual public void Start()
     {
@@ -36,11 +48,11 @@ public abstract class Character : MonoBehaviour
 
     virtual public void Move()
     {
-        if (isFacingLeft)
+        if (isFacingLeft && isMoving)
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime);
         }
-        else
+		else if(isMoving)
         {
             transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime);
         }
