@@ -5,17 +5,13 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour {
 
 	public Text hpText;
-	public Player hero;
+	public Character character;
 
-	void Start () {
-	
-	}
-	
 
 	void Update () {
 
-		string currentHP = hero.getCurrentHealthPoints ().ToString ();
-		string maxHP = hero.getMaxHealthPoints ().ToString ();
+		string currentHP = character.getCurrentHealthPoints ().ToString ();
+		string maxHP = character.getMaxHealthPoints ().ToString ();
 
 		hpText.text = "HP: "+ currentHP+"/"+maxHP;
 	}
