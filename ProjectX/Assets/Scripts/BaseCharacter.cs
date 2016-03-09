@@ -6,6 +6,15 @@ public abstract class Character : MonoBehaviour
     protected GameController gameController;
 
     [SerializeField]
+    protected int healthPoints;
+
+    [SerializeField]
+    protected int maxHealthPoints;
+
+    [SerializeField]
+    protected int attackPoints;
+
+    [SerializeField]
     protected float speed = 1;
 
     [SerializeField]
@@ -16,12 +25,6 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected float groundRadius;
-
-    [SerializeField]
-    protected int healthPoints;
-
-	[SerializeField]
-	protected int maxHealthPoints;
 
     protected bool isFacingLeft = false;
 
@@ -44,7 +47,7 @@ public abstract class Character : MonoBehaviour
         {
             transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime);
         }
-		else 
+        else
         {
             transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime);
         }
@@ -55,11 +58,13 @@ public abstract class Character : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
 
-	public int getCurrentHealthPoints(){
-		return healthPoints;
-	}
+    public int getCurrentHealthPoints()
+    {
+        return healthPoints;
+    }
 
-	public int getMaxHealthPoints(){
-		return maxHealthPoints;
-	}
+    public int getMaxHealthPoints()
+    {
+        return maxHealthPoints;
+    }
 }

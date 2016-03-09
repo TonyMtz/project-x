@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class EnemyUIController : MonoBehaviour {
+public class EnemyUIController : MonoBehaviour
+{
+    [SerializeField]
+    private TextMesh EnemyHP;
 
-	public TextMesh EnemyHP;
-	public Character Enemy;
+    private Character Enemy;
 
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		string enemyCurrentHP=Enemy.getCurrentHealthPoints ().ToString ();
-		string enemyMaxHP = Enemy.getMaxHealthPoints ().ToString ();
-		EnemyHP.text = "HP: " + enemyCurrentHP+"/"+enemyMaxHP;
-	}
+    // Use this for initialization
+    void Start()
+    {
+        Enemy = transform.GetComponentInParent<Character>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        string enemyCurrentHP = Enemy.getCurrentHealthPoints().ToString();
+        string enemyMaxHP = Enemy.getMaxHealthPoints().ToString();
+        EnemyHP.text = "HP: " + enemyCurrentHP + "/" + enemyMaxHP;
+    }
 }
