@@ -18,11 +18,12 @@ public abstract class Character : MonoBehaviour
     protected float groundRadius;
 
     [SerializeField]
-    protected float healthPoints;
+    protected int healthPoints;
+
+	[SerializeField]
+	protected int maxHealthPoints;
 
     protected bool isFacingLeft = false;
-
-	protected bool isMoving =false;
 
     protected Animator animator;
 
@@ -31,15 +32,6 @@ public abstract class Character : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
-	public bool IsMoving()
-	{
-		return isMoving;
-	}
-
-	public void setIsMoving(bool mov)
-	{
-		isMoving = mov;
-	}
 
     virtual public void Start()
     {
@@ -62,4 +54,12 @@ public abstract class Character : MonoBehaviour
     {
         transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
+
+	public int getCurrentHealthPoints(){
+		return healthPoints;
+	}
+
+	public int getMaxHealthPoints(){
+		return maxHealthPoints;
+	}
 }

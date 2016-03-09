@@ -21,4 +21,11 @@ public class Camera : MonoBehaviour {
 
 		transform.position = new Vector3 (posX, posY, transform.position.z);
 	}
+
+	void OnGUI()
+	{
+
+			GUI.Label(new Rect(5,5,5,5), "Label text");
+
+	}
 }
