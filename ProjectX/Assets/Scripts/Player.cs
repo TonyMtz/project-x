@@ -6,17 +6,21 @@ public class Player : Character
     [SerializeField]
     private int jumpForce;
 
+	public string hpText;
+
 
     // Use this for initialization
     override public void Start()
     {
         base.Start();
+		HandleHPText();
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleInput();
+		HandleHPText();
     }
 		
 
@@ -90,9 +94,22 @@ public class Player : Character
 		if(coll.gameObject.tag == "Enemy")
 		{
 			DecreaseHP (1);
-			Debug.Log ("HP: "+getCurrentHealthPoints()+"/"+getMaxHealthPoints());
-
 		}
+		HandleHPText();
+	}
 
+	public void HandleHPText()
+	{
+		hpText = "HP: " + getCurrentHealthPoints () + "/" + getMaxHealthPoints ();
+	}
+
+	void OnGUI (){
+
+		GUIStyle style = new GUIStyle ();
+		style.normal.textColor = Color.red;
+		style.fontSize = 30;
+		style.fontStyle = FontStyle.Bold;
+
+		GUI.Label (new Rect(20,20,100,100), hpText,style);
 	}
 }
