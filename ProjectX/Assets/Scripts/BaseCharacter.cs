@@ -39,6 +39,7 @@ public abstract class Character : MonoBehaviour
     virtual public void Start()
     {
         animator = GetComponent<Animator>();
+		RestoreHP ();
     }
 
     virtual public void Move()
@@ -67,4 +68,19 @@ public abstract class Character : MonoBehaviour
     {
         return maxHealthPoints;
     }
+
+	public void DecreaseHP(int val)
+	{
+		healthPoints-=val;
+	}
+
+	public void IncreaseHP(int val)
+	{
+		healthPoints += val;
+	}
+
+	public void RestoreHP()
+	{
+		healthPoints = maxHealthPoints;
+	}
 }

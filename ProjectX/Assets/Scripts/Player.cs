@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -10,7 +11,6 @@ public class Player : Character
     override public void Start()
     {
         base.Start();
-
     }
 
     // Update is called once per frame
@@ -18,6 +18,7 @@ public class Player : Character
     {
         HandleInput();
     }
+		
 
     // FixedUpdate is called every fixed framerate frame
     void FixedUpdate()
@@ -30,9 +31,7 @@ public class Player : Character
         // Player Movements
         if (gameController.HasGameStarted)
         {
-            //base.Move();
 
-            
             animator.SetBool("Jumping", !IsGrounded());
 
         }
@@ -83,4 +82,17 @@ public class Player : Character
 		}
 
     }
+
+	//Handle Enemy contact
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		//Contact with enemy
+		if(coll.gameObject.tag == "Enemy")
+		{
+			DecreaseHP (1);
+			Debug.Log ("HP: "+getCurrentHealthPoints()+"/"+getMaxHealthPoints());
+
+		}
+
+	}
 }
