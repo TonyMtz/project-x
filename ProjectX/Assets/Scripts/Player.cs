@@ -7,6 +7,8 @@ public class Player : Character
     private int jumpForce;
 
 	public string hpText;
+	public GameObject projectile;
+	public float bulletSpeed;
 
 
     // Use this for initialization
@@ -56,7 +58,7 @@ public class Player : Character
 			transform.eulerAngles = new Vector2 (0, 180);
 
 			animator.SetInteger("Speed", -1);
-
+			isFacingLeft = true;
 
 		}
 
@@ -67,6 +69,7 @@ public class Player : Character
 			transform.eulerAngles = new Vector2 (0, 0);
 
 			animator.SetInteger("Speed", 1);
+			isFacingLeft = false;
 
 		}
 
@@ -85,6 +88,22 @@ public class Player : Character
 
 		}
 
+		//Shoot projectile
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			GameObject bPrefab = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+			if (isFacingLeft) {
+				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.left * bulletSpeed);
+			} else {
+				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.right * bulletSpeed);
+			}
+
+
+
+
+
+		}
+
     }
 
 	//Handle Enemy contact
@@ -93,12 +112,15 @@ public class Player : Character
 		//Contact with enemy
 		if(coll.gameObject.tag == "Enemy")
 		{
+			//TODO: instead of hardcoded value (1), get the collision object attack and pass it as parameter.
 			DecreaseHP (1);
 		}
 
+		//Checks if the hero has no hp
 		if (getCurrentHealthPoints () <= 0) {
+			//TODO: Show Game over screen
 			gameObject.SetActive(false);
-			//Destroy (gameObject);
+
 		}
 
 		HandleHPText();
