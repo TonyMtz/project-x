@@ -95,6 +95,12 @@ public class Player : Character
 		{
 			DecreaseHP (1);
 		}
+
+		if (getCurrentHealthPoints () <= 0) {
+			gameObject.SetActive(false);
+			//Destroy (gameObject);
+		}
+
 		HandleHPText();
 	}
 
