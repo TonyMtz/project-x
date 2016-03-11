@@ -91,10 +91,14 @@ public class Player : Character
 		//Shoot projectile
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			GameObject bPrefab = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+			
 			if (isFacingLeft) {
+				Vector3 firePosition = new Vector3 (transform.position.x-1.5f, transform.position.y-1, 0);
+				GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
 				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.left * bulletSpeed);
 			} else {
+				Vector3 firePosition = new Vector3 (transform.position.x+1.5f, transform.position.y-1, 0);
+				GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
 				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.right * bulletSpeed);
 			}
 
