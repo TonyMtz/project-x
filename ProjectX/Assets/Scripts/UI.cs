@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour {
 
 	public Text hpText;
-	public Character character;
+	public BaseCharacter character;
 
 
 	void Update () {

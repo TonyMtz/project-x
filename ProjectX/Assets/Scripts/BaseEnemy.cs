@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class BaseEnemy : Character
+public abstract class BaseEnemy : BaseCharacter
 {
     [SerializeField]
     protected Transform[] collisionCheck;

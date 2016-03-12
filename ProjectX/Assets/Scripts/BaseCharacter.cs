@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class BaseCharacter : MonoBehaviour
 {
     [SerializeField]
     protected GameController gameController;

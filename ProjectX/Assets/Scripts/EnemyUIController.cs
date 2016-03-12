@@ -5,12 +5,12 @@ public class EnemyUIController : MonoBehaviour
     [SerializeField]
     private TextMesh EnemyHP;
 
-    private Character Enemy;
+    private BaseCharacter Enemy;
 
     // Use this for initialization
     void Start()
     {
-        Enemy = transform.GetComponentInParent<Character>();
+        Enemy = transform.GetComponentInParent<BaseCharacter>();
     }
 
     // Update is called once per frame

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : Character
+public class Player : BaseCharacter
 {
     [SerializeField]
     private int jumpForce;
