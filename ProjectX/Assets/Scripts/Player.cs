@@ -114,8 +114,11 @@ public class Player : BaseCharacter
 		//Contact with enemy
 		if(coll.gameObject.tag == "Enemy")
 		{
-			//TODO: instead of hardcoded value (1), get the collision object attack and pass it as parameter.
-			DecreaseHP (1);
+			//get the collision object attack and pass it as parameter.
+			GameObject getEnemy = coll.gameObject;
+			BaseEnemy enemy= getEnemy.GetComponent<BaseEnemy>();
+
+			DecreaseHP (enemy.getAttackPoints());
 		}
 
 		//Checks if the hero has no hp

@@ -109,4 +109,10 @@ public abstract class BaseCharacter : MonoBehaviour
 	{
 		currentLevel = val;
 	}
+
+	public int getAttackPoints()
+	{
+		return attackPoints;
+	}
+		
 }
