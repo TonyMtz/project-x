@@ -8,9 +8,9 @@ public class Player : BaseCharacter
 
 	private string hpText;
 	private string expText;
+	private string lvlText;
 	public GameObject projectile;
 	public float bulletSpeed;
-	private int exp;
 
 
     // Use this for initialization
@@ -131,7 +131,8 @@ public class Player : BaseCharacter
 	public void HandleHPText()
 	{
 		hpText = "HP: " + getCurrentHealthPoints () + "/" + getMaxHealthPoints ();
-		expText = "EXP: " + getExperiencePoints ();
+		lvlText = "Lvl: " + getLevel ();
+		ManageExperience ();
 	}
 
 	void OnGUI (){
@@ -144,7 +145,23 @@ public class Player : BaseCharacter
 		GUI.Label (new Rect(20,20,100,100), hpText,style);
 
 		style.normal.textColor = Color.green;
-		GUI.Label (new Rect(20,50,100,100), expText,style);
+		GUI.Label (new Rect(20,50,100,100), lvlText,style);
 
+		style.normal.textColor = Color.cyan;
+		GUI.Label (new Rect(20,80,100,100), expText,style);
+
+	}
+
+	void ManageExperience()
+	{
+		int currentExp = getExperiencePoints ();
+		expText = "EXP: " + currentExp;
+
+		//Example level-exp ratio
+		if (currentExp >= 200)
+			setLevel (2);
+		if (currentExp >= 300)
+			setLevel (3);
+		
 	}
 }

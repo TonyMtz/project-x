@@ -25,10 +25,11 @@ public abstract class BaseEnemy : BaseCharacter
 		{
 			DecreaseHP (1);
 			if (getCurrentHealthPoints() <= 0) {
+				//Increment exp points on Player
 				GameObject getPlayer = GameObject.FindGameObjectWithTag("Player");
 				Player hero= getPlayer.GetComponent<Player>();
 				hero.increaseExperiencePoints (getExperiencePoints ());
-				Debug.Log (hero.getExperiencePoints ());
+
 				Destroy (this.gameObject);
 			}
 		}
