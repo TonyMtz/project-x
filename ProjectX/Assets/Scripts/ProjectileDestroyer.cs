@@ -15,7 +15,7 @@ public class ProjectileDestroyer : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		if(col.gameObject.name == "Projectile(Clone)")
+		if(col.gameObject.tag == "Projectile")
 		{
 			Destroy(col.gameObject);
 		}
@@ -23,7 +23,7 @@ public class ProjectileDestroyer : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		if(col.gameObject.name == "Projectile(Clone)")
+		if(col.gameObject.tag == "Projectile")
 		{
 			Destroy(col.gameObject);
 		}
