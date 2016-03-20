@@ -14,6 +14,9 @@ public abstract class BaseCharacter : MonoBehaviour
     [SerializeField]
     protected int attackPoints;
 
+	[SerializeField]
+	protected int expPoints;
+
     [SerializeField]
     protected float speed = 1;
 
@@ -82,5 +85,15 @@ public abstract class BaseCharacter : MonoBehaviour
 	public void RestoreHP()
 	{
 		healthPoints = maxHealthPoints;
+	}
+
+	public int getExperiencePoints()
+	{
+		return expPoints;
+	}
+
+	public void increaseExperiencePoints(int val)
+	{
+		expPoints += val;
 	}
 }

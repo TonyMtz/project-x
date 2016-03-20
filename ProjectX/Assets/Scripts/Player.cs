@@ -6,9 +6,11 @@ public class Player : BaseCharacter
     [SerializeField]
     private int jumpForce;
 
-	public string hpText;
+	private string hpText;
+	private string expText;
 	public GameObject projectile;
 	public float bulletSpeed;
+	private int exp;
 
 
     // Use this for initialization
@@ -101,11 +103,7 @@ public class Player : BaseCharacter
 				GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
 				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.right * bulletSpeed);
 			}
-
-
-
-
-
+				
 		}
 
     }
@@ -133,6 +131,7 @@ public class Player : BaseCharacter
 	public void HandleHPText()
 	{
 		hpText = "HP: " + getCurrentHealthPoints () + "/" + getMaxHealthPoints ();
+		expText = "EXP: " + getExperiencePoints ();
 	}
 
 	void OnGUI (){
@@ -143,5 +142,9 @@ public class Player : BaseCharacter
 		style.fontStyle = FontStyle.Bold;
 
 		GUI.Label (new Rect(20,20,100,100), hpText,style);
+
+		style.normal.textColor = Color.green;
+		GUI.Label (new Rect(20,50,100,100), expText,style);
+
 	}
 }
