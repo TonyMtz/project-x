@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Player : BaseCharacter
 {
     [SerializeField]
-    private int jumpForce;
+    private float jumpForce;
 
     private string hpText;
     private string expText;
@@ -74,7 +74,7 @@ public class Player : BaseCharacter
         // Go Left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+			transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 180);
 
             animator.SetInteger("Speed", -1);
@@ -84,7 +84,7 @@ public class Player : BaseCharacter
         // Go Right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+			transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 0);
 
             animator.SetInteger("Speed", 1);
@@ -182,20 +182,48 @@ public class Player : BaseCharacter
         //Example level-exp ratio
 		if (oldExp != currentExp)
 		{
+			
+			if (currentExp >= 100 && currentExp<=101) {
+				LevelUp (2);
+			}
 			if (currentExp >= 200 && currentExp<=201) {
-				setLevel (2);
-				PlayLevelUpSound ();
-				oldExp = currentExp;
+				LevelUp (3);
 			}
-			if (currentExp >= 800 && currentExp<=801) {
-				setLevel (3);
-				PlayLevelUpSound ();
-				oldExp = currentExp;
+			if (currentExp >= 300 && currentExp<=301) {
+				LevelUp (4);
 			}
+			if (currentExp >= 500 && currentExp<=501) {
+				LevelUp (5);
+			}
+			if (currentExp >= 600 && currentExp<=601) {
+				LevelUp (6);
+			}
+			if (currentExp >= 7000 && currentExp<=7001) {
+				LevelUp (7);
+			}
+			if (currentExp >= 8000 && currentExp<=8001) {
+				LevelUp (8);
+			}
+			if (currentExp >= 10000 && currentExp<=10001) {
+				LevelUp (9);
+			}
+			if (currentExp >= 20000 && currentExp<=20001) {
+				LevelUp (10);
+
+			}
+			oldExp = currentExp;
+
 		}
 
 
     }
+
+	void LevelUp(int val)
+	{
+		setLevel (val);
+		jumpForce += 100;
+		PlayLevelUpSound ();
+	}
 
 	void PlayJumpSound()
 	{

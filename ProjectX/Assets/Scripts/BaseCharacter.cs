@@ -21,7 +21,7 @@ public abstract class BaseCharacter : MonoBehaviour
 	protected int currentLevel;
 
     [SerializeField]
-    protected float speed = 1;
+    private float speed;
 
     [SerializeField]
     protected Transform groundCheck;
@@ -36,6 +36,8 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected Animator animator;
 
+	private float velocity;
+
     protected bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
@@ -46,6 +48,7 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 		RestoreHP ();
+		velocity = 4f;
     }
 
     virtual public void Move()
@@ -95,6 +98,11 @@ public abstract class BaseCharacter : MonoBehaviour
 		return expPoints;
 	}
 
+	public float getVelocity()
+	{
+		return velocity;
+	}
+
 	public void increaseExperiencePoints(int val)
 	{
 		expPoints += val;
@@ -108,6 +116,10 @@ public abstract class BaseCharacter : MonoBehaviour
 	public void setLevel(int val)
 	{
 		currentLevel = val;
+
+		maxHealthPoints += val;
+		velocity +=  1f;
+		RestoreHP ();
 	}
 
 	public int getAttackPoints()
