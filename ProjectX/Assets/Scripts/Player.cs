@@ -12,12 +12,30 @@ public class Player : BaseCharacter
     public GameObject projectile;
     public float bulletSpeed;
 
+	private AudioSource audioSource;
+
+	public float volume;
+
+	public AudioClip jumpSound;
+	public AudioClip takeHitSound;
+	public AudioClip LevelUpSound;
+	public AudioClip shootProjectileSound;
+	public AudioClip landingHit;
+
+	private int oldExp;
+
+
+	void Awake () 
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
     // Use this for initialization
     override public void Start()
     {
         base.Start();
         HandleHPText();
+
     }
 
     // Update is called once per frame
@@ -77,6 +95,7 @@ public class Player : BaseCharacter
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+			PlayJumpSound ();
         }
 
         //Stop walk animation
@@ -89,7 +108,7 @@ public class Player : BaseCharacter
         //Shoot projectile
         if (Input.GetKeyDown(KeyCode.Z))
         {
-
+			PlayShootProjectileSound ();
             if (isFacingLeft)
             {
                 Vector3 firePosition = new Vector3(transform.position.x - 1.5f, transform.position.y - 1, 0);
@@ -115,7 +134,7 @@ public class Player : BaseCharacter
             //get the collision object attack and pass it as parameter.
             GameObject getEnemy = coll.gameObject;
             BaseEnemy enemy = getEnemy.GetComponent<BaseEnemy>();
-
+			PlayTakeHitSound ();
             DecreaseHP(enemy.getAttackPoints());
         }
 
@@ -161,10 +180,47 @@ public class Player : BaseCharacter
         expText = "EXP: " + currentExp;
 
         //Example level-exp ratio
-        if (currentExp >= 200)
-            setLevel(2);
-        if (currentExp >= 300)
-            setLevel(3);
+		if (oldExp != currentExp)
+		{
+			if (currentExp >= 200 && currentExp<=201) {
+				setLevel (2);
+				PlayLevelUpSound ();
+				oldExp = currentExp;
+			}
+			if (currentExp >= 800 && currentExp<=801) {
+				setLevel (3);
+				PlayLevelUpSound ();
+				oldExp = currentExp;
+			}
+		}
+
 
     }
+
+	void PlayJumpSound()
+	{
+		audioSource.PlayOneShot(jumpSound,volume);
+	}
+
+	void PlayTakeHitSound()
+	{
+		audioSource.PlayOneShot(takeHitSound,volume);
+	}
+
+	void PlayLevelUpSound()
+	{
+		audioSource.PlayOneShot(LevelUpSound,volume);
+	}
+
+	void PlayShootProjectileSound()
+	{
+		audioSource.PlayOneShot(shootProjectileSound,volume);
+	}
+
+	public void PlayLandingShoot()
+	{
+		audioSource.PlayOneShot(landingHit,volume);
+	}
+
+
 }

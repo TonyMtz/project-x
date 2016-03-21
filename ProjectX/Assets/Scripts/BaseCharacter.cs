@@ -115,4 +115,5 @@ public abstract class BaseCharacter : MonoBehaviour
 		return attackPoints;
 	}
 		
+		
 }

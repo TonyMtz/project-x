@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ProjectileDestroyer : MonoBehaviour {
 
+	private Player player;
 	// Use this for initialization
 	void Start () {
 	
@@ -18,6 +19,8 @@ public class ProjectileDestroyer : MonoBehaviour {
 		if(col.gameObject.tag == "Projectile")
 		{
 			Destroy(col.gameObject);
+		
+			PlayLandingShoot ();
 		}
 	}
 
@@ -26,7 +29,15 @@ public class ProjectileDestroyer : MonoBehaviour {
 		if(col.gameObject.tag == "Projectile")
 		{
 			Destroy(col.gameObject);
+			PlayLandingShoot ();
 		}
+	}
+
+	void PlayLandingShoot()
+	{
+		GameObject playerGameObj = GameObject.Find("Player");
+		player = playerGameObj.GetComponent<Player>();
+		player.PlayLandingShoot ();
 	}
 		
 }
