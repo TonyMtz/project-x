@@ -16,7 +16,7 @@ public class SpawnerController : MonoBehaviour {
 	}
 
 	void SpawnMobsEverySecond(){
-		InvokeRepeating("SpawnMobs", 2, 1F);
+		InvokeRepeating("SpawnMobs", 2, 5F);
 	}
 
 	void SpawnMobs() {

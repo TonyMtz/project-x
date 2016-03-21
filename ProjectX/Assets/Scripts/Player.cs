@@ -6,27 +6,27 @@ public class Player : BaseCharacter
     [SerializeField]
     private int jumpForce;
 
-	private string hpText;
-	private string expText;
-	private string lvlText;
-	public GameObject projectile;
-	public float bulletSpeed;
+    private string hpText;
+    private string expText;
+    private string lvlText;
+    public GameObject projectile;
+    public float bulletSpeed;
 
 
     // Use this for initialization
     override public void Start()
     {
         base.Start();
-		HandleHPText();
+        HandleHPText();
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleInput();
-		HandleHPText();
+        HandleHPText();
     }
-		
+
 
     // FixedUpdate is called every fixed framerate frame
     void FixedUpdate()
@@ -54,26 +54,24 @@ public class Player : BaseCharacter
         }
 
         // Go Left
-		if(Input.GetKey(KeyCode.LeftArrow))
-		{
-			transform.Translate (Vector2.right * 4f * Time.deltaTime);
-			transform.eulerAngles = new Vector2 (0, 180);
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.eulerAngles = new Vector2(0, 180);
 
-			animator.SetInteger("Speed", -1);
-			isFacingLeft = true;
-
-		}
+            animator.SetInteger("Speed", -1);
+            isFacingLeft = true;
+        }
 
         // Go Right
-		if(Input.GetKey(KeyCode.RightArrow))
-		{
-			transform.Translate (Vector2.right * 4f * Time.deltaTime);
-			transform.eulerAngles = new Vector2 (0, 0);
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector2.right * 4f * Time.deltaTime);
+            transform.eulerAngles = new Vector2(0, 0);
 
-			animator.SetInteger("Speed", 1);
-			isFacingLeft = false;
-
-		}
+            animator.SetInteger("Speed", 1);
+            isFacingLeft = false;
+        }
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
@@ -81,90 +79,92 @@ public class Player : BaseCharacter
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
 
-		//Stop walk animation
-		if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.RightArrow)) 
-		{
-			animator.Play ("PlayerIdle");
-			animator.SetInteger("Speed", 0);
+        //Stop walk animation
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            animator.Play("PlayerIdle");
+            animator.SetInteger("Speed", 0);
+        }
 
+        //Shoot projectile
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
 
-		}
+            if (isFacingLeft)
+            {
+                Vector3 firePosition = new Vector3(transform.position.x - 1.5f, transform.position.y - 1, 0);
+                GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
+                bPrefab.GetComponent<Rigidbody2D>().AddForce(Vector3.left * bulletSpeed);
+            }
+            else {
+                Vector3 firePosition = new Vector3(transform.position.x + 1.5f, transform.position.y - 1, 0);
+                GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
+                bPrefab.GetComponent<Rigidbody2D>().AddForce(Vector3.right * bulletSpeed);
+            }
 
-		//Shoot projectile
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			
-			if (isFacingLeft) {
-				Vector3 firePosition = new Vector3 (transform.position.x-1.5f, transform.position.y-1, 0);
-				GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
-				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.left * bulletSpeed);
-			} else {
-				Vector3 firePosition = new Vector3 (transform.position.x+1.5f, transform.position.y-1, 0);
-				GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
-				bPrefab.GetComponent<Rigidbody2D>().AddForce (Vector3.right * bulletSpeed);
-			}
-				
-		}
+        }
 
     }
 
-	//Handle Enemy contact
-	void OnCollisionEnter2D(Collision2D coll)
-	{
-		//Contact with enemy
-		if(coll.gameObject.tag == "Enemy")
-		{
-			//get the collision object attack and pass it as parameter.
-			GameObject getEnemy = coll.gameObject;
-			BaseEnemy enemy= getEnemy.GetComponent<BaseEnemy>();
+    //Handle Enemy contact
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        //Contact with enemy
+        if (coll.gameObject.tag == "Enemy")
+        {
+            //get the collision object attack and pass it as parameter.
+            GameObject getEnemy = coll.gameObject;
+            BaseEnemy enemy = getEnemy.GetComponent<BaseEnemy>();
 
-			DecreaseHP (enemy.getAttackPoints());
-		}
+            DecreaseHP(enemy.getAttackPoints());
+        }
 
-		//Checks if the hero has no hp
-		if (getCurrentHealthPoints () <= 0) {
-			//TODO: Show Game over screen
-			gameObject.SetActive(false);
+        //Checks if the hero has no hp
+        if (getCurrentHealthPoints() <= 0)
+        {
+            //TODO: Show Game over screen
+            gameObject.SetActive(false);
 
-		}
+        }
 
-		HandleHPText();
-	}
+        HandleHPText();
+    }
 
-	public void HandleHPText()
-	{
-		hpText = "HP: " + getCurrentHealthPoints () + "/" + getMaxHealthPoints ();
-		lvlText = "Lvl: " + getLevel ();
-		ManageExperience ();
-	}
+    public void HandleHPText()
+    {
+        hpText = "HP: " + getCurrentHealthPoints() + "/" + getMaxHealthPoints();
+        lvlText = "Lvl: " + getLevel();
+        ManageExperience();
+    }
 
-	void OnGUI (){
+    void OnGUI()
+    {
 
-		GUIStyle style = new GUIStyle ();
-		style.normal.textColor = Color.red;
-		style.fontSize = 30;
-		style.fontStyle = FontStyle.Bold;
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.red;
+        style.fontSize = 30;
+        style.fontStyle = FontStyle.Bold;
 
-		GUI.Label (new Rect(20,20,100,100), hpText,style);
+        GUI.Label(new Rect(20, 20, 100, 100), hpText, style);
 
-		style.normal.textColor = Color.green;
-		GUI.Label (new Rect(20,50,100,100), lvlText,style);
+        style.normal.textColor = Color.green;
+        GUI.Label(new Rect(20, 50, 100, 100), lvlText, style);
 
-		style.normal.textColor = Color.cyan;
-		GUI.Label (new Rect(20,80,100,100), expText,style);
+        style.normal.textColor = Color.cyan;
+        GUI.Label(new Rect(20, 80, 100, 100), expText, style);
 
-	}
+    }
 
-	void ManageExperience()
-	{
-		int currentExp = getExperiencePoints ();
-		expText = "EXP: " + currentExp;
+    void ManageExperience()
+    {
+        int currentExp = getExperiencePoints();
+        expText = "EXP: " + currentExp;
 
-		//Example level-exp ratio
-		if (currentExp >= 200)
-			setLevel (2);
-		if (currentExp >= 300)
-			setLevel (3);
-		
-	}
+        //Example level-exp ratio
+        if (currentExp >= 200)
+            setLevel(2);
+        if (currentExp >= 300)
+            setLevel(3);
+
+    }
 }
