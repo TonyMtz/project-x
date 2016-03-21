@@ -1,5 +1,8 @@
 # ProjectX
 
+
+![Current state](https://github.com/TonyMtz/project-x/blob/master/Promo%20images/promo_gif_1.gif)
+
 Trello Board:
 https://trello.com/b/IHmhQEse/project-x
 
