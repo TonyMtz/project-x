@@ -12,23 +12,23 @@ public class Player : BaseCharacter
     public GameObject projectile;
     public float bulletSpeed;
 
-	private AudioSource audioSource;
+    private AudioSource audioSource;
 
-	public float volume;
+    public float volume;
 
-	public AudioClip jumpSound;
-	public AudioClip takeHitSound;
-	public AudioClip LevelUpSound;
-	public AudioClip shootProjectileSound;
-	public AudioClip landingHit;
+    public AudioClip jumpSound;
+    public AudioClip takeHitSound;
+    public AudioClip LevelUpSound;
+    public AudioClip shootProjectileSound;
+    public AudioClip landingHit;
 
-	private int oldExp;
+    private int oldExp;
 
 
-	void Awake () 
-	{
-		audioSource = GetComponent<AudioSource>();
-	}
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Use this for initialization
     override public void Start()
@@ -74,7 +74,7 @@ public class Player : BaseCharacter
         // Go Left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-			transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
+            transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 180);
 
             animator.SetInteger("Speed", -1);
@@ -84,7 +84,7 @@ public class Player : BaseCharacter
         // Go Right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-			transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
+            transform.Translate(Vector2.right * getVelocity() * Time.deltaTime);
             transform.eulerAngles = new Vector2(0, 0);
 
             animator.SetInteger("Speed", 1);
@@ -95,7 +95,7 @@ public class Player : BaseCharacter
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-			PlayJumpSound ();
+            PlayJumpSound();
         }
 
         //Stop walk animation
@@ -108,19 +108,14 @@ public class Player : BaseCharacter
         //Shoot projectile
         if (Input.GetKeyDown(KeyCode.Z))
         {
-			PlayShootProjectileSound ();
-            if (isFacingLeft)
-            {
-                Vector3 firePosition = new Vector3(transform.position.x - 1.5f, transform.position.y - 1, 0);
-                GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
-                bPrefab.GetComponent<Rigidbody2D>().AddForce(Vector3.left * bulletSpeed);
-            }
-            else {
-                Vector3 firePosition = new Vector3(transform.position.x + 1.5f, transform.position.y - 1, 0);
-                GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
-                bPrefab.GetComponent<Rigidbody2D>().AddForce(Vector3.right * bulletSpeed);
-            }
+            PlayShootProjectileSound();
 
+            int modifier = isFacingLeft ? -1 : 1;
+            Vector2 forceVector = isFacingLeft ? Vector2.left : Vector2.right;
+
+            Vector3 firePosition = new Vector3(transform.position.x + (1.5f * modifier), transform.position.y - 0.75f, 0);
+            GameObject bPrefab = Instantiate(projectile, firePosition, Quaternion.identity) as GameObject;
+            bPrefab.GetComponent<Rigidbody2D>().AddForce(forceVector * bulletSpeed);
         }
 
     }
@@ -134,7 +129,7 @@ public class Player : BaseCharacter
             //get the collision object attack and pass it as parameter.
             GameObject getEnemy = coll.gameObject;
             BaseEnemy enemy = getEnemy.GetComponent<BaseEnemy>();
-			PlayTakeHitSound ();
+            PlayTakeHitSound();
             DecreaseHP(enemy.getAttackPoints());
         }
 
@@ -180,75 +175,84 @@ public class Player : BaseCharacter
         expText = "EXP: " + currentExp;
 
         //Example level-exp ratio
-		if (oldExp != currentExp)
-		{
-			
-			if (currentExp >= 100 && currentExp<=101) {
-				LevelUp (2);
-			}
-			if (currentExp >= 200 && currentExp<=201) {
-				LevelUp (3);
-			}
-			if (currentExp >= 300 && currentExp<=301) {
-				LevelUp (4);
-			}
-			if (currentExp >= 500 && currentExp<=501) {
-				LevelUp (5);
-			}
-			if (currentExp >= 600 && currentExp<=601) {
-				LevelUp (6);
-			}
-			if (currentExp >= 7000 && currentExp<=7001) {
-				LevelUp (7);
-			}
-			if (currentExp >= 8000 && currentExp<=8001) {
-				LevelUp (8);
-			}
-			if (currentExp >= 10000 && currentExp<=10001) {
-				LevelUp (9);
-			}
-			if (currentExp >= 20000 && currentExp<=20001) {
-				LevelUp (10);
+        if (oldExp != currentExp)
+        {
 
-			}
-			oldExp = currentExp;
+            if (currentExp >= 100 && currentExp <= 101)
+            {
+                LevelUp(2);
+            }
+            if (currentExp >= 200 && currentExp <= 201)
+            {
+                LevelUp(3);
+            }
+            if (currentExp >= 300 && currentExp <= 301)
+            {
+                LevelUp(4);
+            }
+            if (currentExp >= 500 && currentExp <= 501)
+            {
+                LevelUp(5);
+            }
+            if (currentExp >= 600 && currentExp <= 601)
+            {
+                LevelUp(6);
+            }
+            if (currentExp >= 7000 && currentExp <= 7001)
+            {
+                LevelUp(7);
+            }
+            if (currentExp >= 8000 && currentExp <= 8001)
+            {
+                LevelUp(8);
+            }
+            if (currentExp >= 10000 && currentExp <= 10001)
+            {
+                LevelUp(9);
+            }
+            if (currentExp >= 20000 && currentExp <= 20001)
+            {
+                LevelUp(10);
 
-		}
+            }
+            oldExp = currentExp;
+
+        }
 
 
     }
 
-	void LevelUp(int val)
-	{
-		setLevel (val);
-		jumpForce += 100;
-		PlayLevelUpSound ();
-	}
+    void LevelUp(int val)
+    {
+        setLevel(val);
+        jumpForce += 100;
+        PlayLevelUpSound();
+    }
 
-	void PlayJumpSound()
-	{
-		audioSource.PlayOneShot(jumpSound,volume);
-	}
+    void PlayJumpSound()
+    {
+        audioSource.PlayOneShot(jumpSound, volume);
+    }
 
-	void PlayTakeHitSound()
-	{
-		audioSource.PlayOneShot(takeHitSound,volume);
-	}
+    void PlayTakeHitSound()
+    {
+        audioSource.PlayOneShot(takeHitSound, volume);
+    }
 
-	void PlayLevelUpSound()
-	{
-		audioSource.PlayOneShot(LevelUpSound,volume);
-	}
+    void PlayLevelUpSound()
+    {
+        audioSource.PlayOneShot(LevelUpSound, volume);
+    }
 
-	void PlayShootProjectileSound()
-	{
-		audioSource.PlayOneShot(shootProjectileSound,volume);
-	}
+    void PlayShootProjectileSound()
+    {
+        audioSource.PlayOneShot(shootProjectileSound, volume);
+    }
 
-	public void PlayLandingShoot()
-	{
-		audioSource.PlayOneShot(landingHit,volume);
-	}
+    public void PlayLandingShoot()
+    {
+        audioSource.PlayOneShot(landingHit, volume);
+    }
 
 
 }

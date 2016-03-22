@@ -127,4 +127,9 @@ public abstract class BaseCharacter : MonoBehaviour
         return attackPoints;
     }
 
+    public bool IsFacingLeft()
+    {
+        return isFacingLeft;
+    }
+
 }
