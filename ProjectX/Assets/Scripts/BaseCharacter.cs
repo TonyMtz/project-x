@@ -14,11 +14,11 @@ public abstract class BaseCharacter : MonoBehaviour
     [SerializeField]
     protected int attackPoints;
 
-	[SerializeField]
-	protected int expPoints;
+    [SerializeField]
+    protected int expPoints;
 
-	[SerializeField]
-	protected int currentLevel;
+    [SerializeField]
+    protected int currentLevel;
 
     [SerializeField]
     private float speed;
@@ -36,7 +36,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected Animator animator;
 
-	private float velocity;
+    private float velocity;
 
     protected bool IsGrounded()
     {
@@ -47,8 +47,8 @@ public abstract class BaseCharacter : MonoBehaviour
     virtual public void Start()
     {
         animator = GetComponent<Animator>();
-		RestoreHP ();
-		velocity = 4f;
+        RestoreHP();
+        velocity = 4f;
     }
 
     virtual public void Move()
@@ -78,54 +78,53 @@ public abstract class BaseCharacter : MonoBehaviour
         return maxHealthPoints;
     }
 
-	public void DecreaseHP(int val)
-	{
-		healthPoints-=val;
-	}
+    public void DecreaseHP(int val)
+    {
+        healthPoints -= val;
+    }
 
-	public void IncreaseHP(int val)
-	{
-		healthPoints += val;
-	}
+    public void IncreaseHP(int val)
+    {
+        healthPoints += val;
+    }
 
-	public void RestoreHP()
-	{
-		healthPoints = maxHealthPoints;
-	}
+    public void RestoreHP()
+    {
+        healthPoints = maxHealthPoints;
+    }
 
-	public int getExperiencePoints()
-	{
-		return expPoints;
-	}
+    public int getExperiencePoints()
+    {
+        return expPoints;
+    }
 
-	public float getVelocity()
-	{
-		return velocity;
-	}
+    public float getVelocity()
+    {
+        return velocity;
+    }
 
-	public void increaseExperiencePoints(int val)
-	{
-		expPoints += val;
-	}
+    public void increaseExperiencePoints(int val)
+    {
+        expPoints += val;
+    }
 
-	public int getLevel()
-	{
-		return currentLevel;
-	}
+    public int getLevel()
+    {
+        return currentLevel;
+    }
 
-	public void setLevel(int val)
-	{
-		currentLevel = val;
+    public void setLevel(int val)
+    {
+        currentLevel = val;
 
-		maxHealthPoints += val;
-		velocity +=  1f;
-		RestoreHP ();
-	}
+        maxHealthPoints += val;
+        velocity += 1f;
+        RestoreHP();
+    }
 
-	public int getAttackPoints()
-	{
-		return attackPoints;
-	}
-		
-		
+    public int getAttackPoints()
+    {
+        return attackPoints;
+    }
+
 }

@@ -1,25 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnerController : MonoBehaviour {
+public class SpawnerController : MonoBehaviour
+{
 
-	public GameObject dummy;
+    public GameObject dummy;
 
-	// Use this for initialization
-	void Start () {
-		SpawnMobsEverySecond();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+        SpawnMobsEverySecond();
+    }
 
-	void SpawnMobsEverySecond(){
-		InvokeRepeating("SpawnMobs", 2, 5F);
-	}
+    // Update is called once per frame
+    void Update()
+    {
 
-	void SpawnMobs() {
-		GameObject wreckClone = (GameObject) Instantiate(dummy, transform.position, transform.rotation);
-	}
+    }
+
+    void SpawnMobsEverySecond()
+    {
+        InvokeRepeating("SpawnMobs", 2, 5F);
+    }
+
+    void SpawnMobs()
+    {
+        GameObject wreckClone = (GameObject)Instantiate(dummy, transform.position, transform.rotation);
+    }
 }

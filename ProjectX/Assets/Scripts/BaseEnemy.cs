@@ -19,19 +19,20 @@ public abstract class BaseEnemy : BaseCharacter
         isFacingLeft = true;
     }
 
-	void OnCollisionEnter2D (Collision2D col)
-	{
-		if(col.gameObject.tag == "Projectile")
-		{
-			DecreaseHP (1);
-			if (getCurrentHealthPoints() <= 0) {
-				//Increment exp points on Player
-				GameObject getPlayer = GameObject.FindGameObjectWithTag("Player");
-				Player hero= getPlayer.GetComponent<Player>();
-				hero.increaseExperiencePoints (getExperiencePoints ());
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Projectile")
+        {
+            DecreaseHP(1);
+            if (getCurrentHealthPoints() <= 0)
+            {
+                //Increment exp points on Player
+                GameObject getPlayer = GameObject.FindGameObjectWithTag("Player");
+                Player hero = getPlayer.GetComponent<Player>();
+                hero.increaseExperiencePoints(getExperiencePoints());
 
-				Destroy (this.gameObject);
-			}
-		}
-	}
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

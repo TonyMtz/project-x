@@ -22,6 +22,7 @@ public class Walker : BaseEnemy
 
         if (!canMove)
         {
+            animator.SetBool("isRunning", false);
             return;
         }
 
@@ -30,6 +31,8 @@ public class Walker : BaseEnemy
             isFacingLeft = !isFacingLeft;
             Flip();
         }
+
+        animator.SetBool("isRunning", true);
 
         Move();
     }
