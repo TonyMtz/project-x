@@ -130,7 +130,10 @@ public class Player : BaseCharacter
             GameObject getEnemy = coll.gameObject;
             BaseEnemy enemy = getEnemy.GetComponent<BaseEnemy>();
             PlayTakeHitSound();
-            DecreaseHP(enemy.getAttackPoints());
+			DecreaseHP(enemy.getAttackPoints());
+			animator.Play("PlayerHit");
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+
         }
 
         //Checks if the hero has no hp
