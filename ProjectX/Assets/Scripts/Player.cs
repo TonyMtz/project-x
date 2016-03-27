@@ -134,6 +134,11 @@ public class Player : BaseCharacter
 			animator.Play("PlayerHit");
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
 
+			GameObject hit_fx =
+				Instantiate(Resources.Load("FX/Hit_FX"),
+					transform.position,
+					Quaternion.identity) as GameObject;
+
         }
 
         //Checks if the hero has no hp

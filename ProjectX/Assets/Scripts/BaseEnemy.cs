@@ -24,6 +24,11 @@ public abstract class BaseEnemy : BaseCharacter
         if (col.gameObject.tag == "Projectile")
         {
             DecreaseHP(1);
+			GameObject hit_fx =
+				Instantiate(Resources.Load("FX/Hit_FX"),
+					transform.position,
+					Quaternion.identity) as GameObject;
+			
             if (getCurrentHealthPoints() <= 0)
             {
                 //Increment exp points on Player
