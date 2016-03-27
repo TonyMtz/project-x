@@ -35,8 +35,15 @@ public abstract class BaseEnemy : BaseCharacter
                 GameObject getPlayer = GameObject.FindGameObjectWithTag("Player");
                 Player hero = getPlayer.GetComponent<Player>();
                 hero.increaseExperiencePoints(getExperiencePoints());
+
+				int rand = Random.Range (0, 2);
+				string explosion = "FX/Explosion_FX";
+				if (rand == 1)
+					explosion = "FX/Explosion2_FX";
+					
+
 				GameObject explosion_fx =
-					Instantiate(Resources.Load("FX/Explosion_FX"),
+					Instantiate(Resources.Load(explosion),
 						transform.position,
 						Quaternion.identity) as GameObject;
 
