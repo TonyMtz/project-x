@@ -186,23 +186,23 @@ public class Player : BaseCharacter
         if (oldExp != currentExp)
         {
 
-            if (currentExp >= 100 && currentExp <= 101)
+            if (currentExp >= 1000 && currentExp <= 1001)
             {
                 LevelUp(2);
             }
-            if (currentExp >= 200 && currentExp <= 201)
+            if (currentExp >= 2000 && currentExp <= 2001)
             {
                 LevelUp(3);
             }
-            if (currentExp >= 300 && currentExp <= 301)
+            if (currentExp >= 3000 && currentExp <= 3001)
             {
                 LevelUp(4);
             }
-            if (currentExp >= 500 && currentExp <= 501)
+            if (currentExp >= 5000 && currentExp <= 5001)
             {
                 LevelUp(5);
             }
-            if (currentExp >= 600 && currentExp <= 601)
+            if (currentExp >= 6000 && currentExp <= 6001)
             {
                 LevelUp(6);
             }
