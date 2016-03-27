@@ -35,9 +35,13 @@ public abstract class BaseEnemy : BaseCharacter
                 GameObject getPlayer = GameObject.FindGameObjectWithTag("Player");
                 Player hero = getPlayer.GetComponent<Player>();
                 hero.increaseExperiencePoints(getExperiencePoints());
+				GameObject explosion_fx =
+					Instantiate(Resources.Load("FX/Explosion_FX"),
+						transform.position,
+						Quaternion.identity) as GameObject;
 
                 Destroy(this.gameObject);
             }
         }
-    }
+    } 
 }
