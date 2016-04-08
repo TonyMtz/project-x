@@ -79,6 +79,9 @@ public class Player : BaseCharacter
 
             animator.SetInteger("Speed", -1);
             isFacingLeft = true;
+			GameObject getBackground = GameObject.Find ("Background");
+			ScrollBackground bg = getBackground.GetComponent<ScrollBackground>();
+			bg.MoveBackgroundToLeft (-transform.position.x);
         }
 
         // Go Right
@@ -89,6 +92,10 @@ public class Player : BaseCharacter
 
             animator.SetInteger("Speed", 1);
             isFacingLeft = false;
+
+			GameObject getBackground = GameObject.Find ("Background");
+			ScrollBackground bg = getBackground.GetComponent<ScrollBackground>();
+			bg.MoveBackgroundToRight (transform.position.x);
         }
 
         // Jump
