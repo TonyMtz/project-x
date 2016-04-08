@@ -1,7 +1,9 @@
 # ProjectX
 
 
-![Current state](https://raw.githubusercontent.com/tonymtz/project-x/b3c72c251be1f54c0987f3c30910ae3c765ea8ac/Promo%20images/Promo_Gif_6.gif)
+![Current state](https://raw.githubusercontent.com/tonymtz/project-x/1b69298740bc56a33138539ba0ebdfa733963246/Promo%20images/Promo_gif_8.gif)
+
+![Progress](https://raw.githubusercontent.com/tonymtz/project-x/1b69298740bc56a33138539ba0ebdfa733963246/Promo%20images/Promo_gif_7.gif)
 
 Trello Board:
 https://trello.com/b/IHmhQEse/project-x
