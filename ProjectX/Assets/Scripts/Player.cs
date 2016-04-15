@@ -101,6 +101,7 @@ public class Player : BaseCharacter
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+			animator.Play("PlayerJump");
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             PlayJumpSound();
         }
