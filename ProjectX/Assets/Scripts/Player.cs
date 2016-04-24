@@ -98,13 +98,24 @@ public class Player : BaseCharacter
 			bg.MoveBackgroundToRight (transform.position.x);
         }
 
+		//double jump
+		if (Input.GetKeyDown(KeyCode.Space) && secondJump)
+		{
+			animator.Play("PlayerJump");
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+			PlayJumpSound();
+			secondJump = false;
+		}
+
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			animator.Play("PlayerJump");
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+			secondJump = true;
             PlayJumpSound();
         }
+	
 
         //Stop walk animation
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
