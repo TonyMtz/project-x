@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScrollBackground : MonoBehaviour {
 
-	public float speed=0.005f;
+	public float speed=0.05f;
 	Vector2 offset;
 	void Start () {
 	}
