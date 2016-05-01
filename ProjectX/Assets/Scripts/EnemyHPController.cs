@@ -10,6 +10,8 @@ public class EnemyHPController : MonoBehaviour
 
     private bool isFacingLeft = true;
 
+	public GameObject healthBar;
+
     // Use this for initialization
     void Start()
     {
@@ -23,7 +25,13 @@ public class EnemyHPController : MonoBehaviour
         string currentHP = enemy.getCurrentHealthPoints().ToString();
         string maxHP = enemy.getMaxHealthPoints().ToString();
 
-        hpText.text = string.Format("HP: {0}/{1}", currentHP, maxHP);
+		float cur_HP= float.Parse(currentHP); 
+		float max_HP = float.Parse(maxHP); 
+
+		float calc_health =  cur_HP/ max_HP;
+		SetHealthBar (calc_health);
+
+        //hpText.text = string.Format("HP: {0}/{1}", currentHP, maxHP);
 
         if (enemy.IsFacingLeft() != isFacingLeft)
         {
@@ -36,4 +44,8 @@ public class EnemyHPController : MonoBehaviour
     {
         transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
+
+	public void SetHealthBar(float myHealth){
+		healthBar.transform.localScale = new Vector3(Mathf.Clamp(myHealth,0f ,1f), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+	}
 }

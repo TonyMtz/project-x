@@ -87,7 +87,7 @@ public class Player : BaseCharacter
             isFacingLeft = true;
 			GameObject getBackground = GameObject.Find ("Background");
 			ScrollBackground bg = getBackground.GetComponent<ScrollBackground>();
-			bg.MoveBackgroundToLeft (-transform.position.x);
+			//bg.MoveBackgroundToLeft (-transform.position.x);
         }
 
         // Go Right
@@ -101,7 +101,7 @@ public class Player : BaseCharacter
 
 			GameObject getBackground = GameObject.Find ("Background");
 			ScrollBackground bg = getBackground.GetComponent<ScrollBackground>();
-			bg.MoveBackgroundToRight (transform.position.x);
+			//bg.MoveBackgroundToRight (transform.position.x);
         }
 
 	

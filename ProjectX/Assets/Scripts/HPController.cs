@@ -19,4 +19,5 @@ public class HPController : MonoBehaviour
 
         hpText.text = string.Format("HP: {0}/{1}", currentHP, maxHP);
     }
+		
 }
