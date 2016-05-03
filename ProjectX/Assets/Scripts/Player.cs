@@ -181,10 +181,10 @@ public class Player : BaseCharacter
 
     public void HandleHPText()
     {
-        hpText = "HP: " + getCurrentHealthPoints() + "/" + getMaxHealthPoints();
+        //hpText = "HP: " + getCurrentHealthPoints() + "/" + getMaxHealthPoints();
         lvlText = "Lvl: " + getLevel();
         ManageExperience();
-		barDisplay = getCurrentHealthPoints();
+
     }
 
     void OnGUI()
@@ -195,26 +195,13 @@ public class Player : BaseCharacter
         style.fontSize = 30;
         style.fontStyle = FontStyle.Bold;
 
-        GUI.Label(new Rect(20, 20, 100, 100), hpText, style);
+        //GUI.Label(new Rect(20, 20, 100, 100), hpText, style);
 
         style.normal.textColor = Color.green;
         GUI.Label(new Rect(20, 50, 100, 100), lvlText, style);
 
         style.normal.textColor = Color.cyan;
         GUI.Label(new Rect(20, 80, 100, 100), expText, style);
-
-
-
-			// draw the background:
-			GUI.BeginGroup (new Rect (pos.x, pos.y, size.x, size.y));
-		GUI.Box (new Rect (0,0, size.x, size.y),progressBarEmpty,"Label");
-
-			// draw the filled-in part:
-			GUI.BeginGroup (new Rect (0, 0, size.x * barDisplay, size.y));
-		GUI.Box (new Rect (0,0, barDisplay, size.y),progressBarFull,"Label");
-			GUI.EndGroup ();
-
-			GUI.EndGroup ();
 
 
     }
