@@ -211,44 +211,54 @@ public class Player : BaseCharacter
         int currentExp = getExperiencePoints();
         expText = "EXP: " + currentExp;
 
+		int curLevel = getLevel ();
         //Example level-exp ratio
         if (oldExp != currentExp)
         {
 
-            if (currentExp >= 1000 && currentExp <= 1001)
+            if (currentExp >= 1000 && currentExp <= 1999)
             {
-                LevelUp(2);
+				if(curLevel!=2)
+                	LevelUp(2);
             }
-            if (currentExp >= 2000 && currentExp <= 2001)
+            if (currentExp >= 2000 && currentExp <= 2999)
             {
+				if(curLevel!=3)
                 LevelUp(3);
             }
-            if (currentExp >= 3000 && currentExp <= 3001)
+            if (currentExp >= 3000 && currentExp <= 3999)
             {
+				if(curLevel!=4)
                 LevelUp(4);
             }
-            if (currentExp >= 5000 && currentExp <= 5001)
+            if (currentExp >= 5000 && currentExp <= 5999)
             {
+				if(curLevel!=5)
                 LevelUp(5);
             }
-            if (currentExp >= 6000 && currentExp <= 6001)
+            if (currentExp >= 6000 && currentExp <= 6999)
             {
+				if(curLevel!=6)
                 LevelUp(6);
             }
-            if (currentExp >= 7000 && currentExp <= 7001)
+            if (currentExp >= 7000 && currentExp <= 7999)
             {
+				if(curLevel!=7)
                 LevelUp(7);
             }
-            if (currentExp >= 8000 && currentExp <= 8001)
+            if (currentExp >= 8000 && currentExp <= 8999)
             {
+				if(curLevel!=8)
                 LevelUp(8);
             }
-            if (currentExp >= 10000 && currentExp <= 10001)
+            if (currentExp >= 10000 && currentExp <= 10999)
             {
+				if(curLevel!=9)
                 LevelUp(9);
             }
-            if (currentExp >= 20000 && currentExp <= 20001)
+            if (currentExp >= 20000 && currentExp <= 20999)
             {
+				if(curLevel!=10)
                 LevelUp(10);
 
             }
@@ -262,7 +272,7 @@ public class Player : BaseCharacter
     void LevelUp(int val)
     {
         setLevel(val);
-        jumpForce += 100;
+		jumpForce += (val*100);
         PlayLevelUpSound();
     }
 
