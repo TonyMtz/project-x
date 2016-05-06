@@ -272,7 +272,7 @@ public class Player : BaseCharacter
     void LevelUp(int val)
     {
         setLevel(val);
-		jumpForce += (val*100);
+		jumpForce += 100;
         PlayLevelUpSound();
     }
 
