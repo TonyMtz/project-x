@@ -63,9 +63,7 @@ public class Player : BaseCharacter
         // Player Movements
         if (gameController.HasGameStarted)
         {
-
             animator.SetBool("Jumping", !IsGrounded());
-
         }
     }
 
@@ -122,14 +120,19 @@ public class Player : BaseCharacter
 			animator.Play("PlayerJump");
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
 			secondJump = false;
+			GameObject myChildObject = GameObject.Find ("Weapon");
+			myChildObject.transform.parent = transform;
+			myChildObject.transform.localPosition = new Vector2 (myChildObject.transform.localPosition.x, -0.45f);
+
 		}
-	
+			
 
         //Stop walk animation
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             animator.Play("PlayerIdle");
             animator.SetInteger("Speed", 0);
+
         }
 
         //Shoot projectile
@@ -145,7 +148,28 @@ public class Player : BaseCharacter
             bPrefab.GetComponent<Rigidbody2D>().AddForce(forceVector * bulletSpeed);
         }
 
+		if (IsGrounded ()) {
+			WeaponDown ();
+		} else {
+			WeaponUp ();
+		}
+
     }
+
+	void WeaponUp()
+	{
+		GameObject myChildObject = GameObject.Find ("Weapon");
+		myChildObject.transform.parent = transform;
+		myChildObject.transform.localPosition = new Vector2 (myChildObject.transform.localPosition.x, -0.45f);
+
+	}
+
+	void WeaponDown()
+	{
+		GameObject myChildObject = GameObject.Find("Weapon");
+		myChildObject.transform.parent = transform;
+		myChildObject.transform.localPosition = new Vector2(myChildObject.transform.localPosition.x,-0.69f);
+	}
 
     //Handle Enemy contact
     void OnCollisionEnter2D(Collision2D coll)
