@@ -195,8 +195,12 @@ public class Player : BaseCharacter
         //Checks if the hero has no hp
         if (getCurrentHealthPoints() <= 0)
         {
-            //TODO: Show Game over screen
+            //TODO: Show Game Over screen
+			GameObject menu = (GameObject)Resources.Load("Menu",typeof(GameObject));
+			GameObject menuPrefab = Instantiate(menu, new Vector2(0,0), Quaternion.identity) as GameObject;
             gameObject.SetActive(false);
+
+		
 
         }
 
