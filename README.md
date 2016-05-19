@@ -1,11 +1,12 @@
 # ProjectX
 
+![Current state](https://github.com/tonymtz/project-x/blob/master/Promo%20images/Promo_Gif_18.gif)
 ![Progress](https://raw.githubusercontent.com/tonymtz/project-x/master/Promo%20images/Promo_gif_16.gif)
 
-![Current state](https://raw.githubusercontent.com/tonymtz/project-x/2746c8a21a7897e630e889a64acec1f337a98c80/Promo%20images/promo_gif_13.gif)
+![Previous state](https://raw.githubusercontent.com/tonymtz/project-x/2746c8a21a7897e630e889a64acec1f337a98c80/Promo%20images/promo_gif_13.gif)
 
 ![Previous state](https://raw.githubusercontent.com/tonymtz/project-x/89400913d8aa63c80489838506deb50732968ba8/Promo%20images/promo_12.gif)
-![Previous state](https://raw.githubusercontent.com/tonymtz/project-x/1b69298740bc56a33138539ba0ebdfa733963246/Promo%20images/Promo_gif_8.gif)
+
 
 
 
