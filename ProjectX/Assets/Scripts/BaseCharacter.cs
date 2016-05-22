@@ -38,14 +38,12 @@ public abstract class BaseCharacter : MonoBehaviour
 
     private float velocity;
 
-	public bool secondJump;
+    public bool secondJump;
 
     protected bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-
     }
-
 
     virtual public void Start()
     {
