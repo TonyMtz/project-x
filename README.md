@@ -1,4 +1,5 @@
 # ProjectX
+![Logo](https://raw.githubusercontent.com/tonymtz/project-x/b27dd9394eab142c103f39c80fa9734b65f4ca85/Images%20source%20files/Laika_Logo.png)
 
 ![Current state](https://github.com/tonymtz/project-x/blob/master/Promo%20images/Promo_Gif_18.gif)
 ![Progress](https://raw.githubusercontent.com/tonymtz/project-x/master/Promo%20images/Promo_gif_16.gif)
