@@ -30,6 +30,8 @@ public class Player : BaseCharacter
 	 public Texture2D progressBarEmpty;
 	public Texture2D progressBarFull;
 
+	public Font pixelFont;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -225,11 +227,12 @@ public class Player : BaseCharacter
 
         //GUI.Label(new Rect(20, 20, 100, 100), hpText, style);
 
+		GUI.skin.font = pixelFont;
         style.normal.textColor = Color.green;
-        GUI.Label(new Rect(20, 50, 100, 100), lvlText, style);
+        GUI.Label(new Rect(20, 20, 100, 100), lvlText, style);
 
         style.normal.textColor = Color.cyan;
-        GUI.Label(new Rect(20, 80, 100, 100), expText, style);
+        GUI.Label(new Rect(20, 50, 100, 100), expText, style);
 
 
     }
